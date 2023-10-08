@@ -46,8 +46,25 @@ if (len(ptsAbove) == 0 && len(ptsBelow) == 1) {
 ```
 
 ## Preventing LEGO bricks from intersecting
-TODO
-When attempting to place a LEGO block at the location of a particle, test its bounding box for intersection with other
+Since we ask you to create your LEGO-ified model from bricks that are not simply 1x1 in size, you will need to make sure that
+the bricks you place are not intersecting other bricks. To do so, you will need to perform a bounding box test for each brick:
+- Using a pair of Block Begin and Block End nodes, iterate over every particle in your mesh volume
+  - To examine each particle individually, you can compare its `@ptnum` to the iteration number (`detail(1, "iteration")`).
+- For the particle you're examining, use a Copy to Points node to place a Box at its location,
+where the Box's size is the size of the LEGO brick you're trying to place. Thsi will act as your potential brick's bounding box.
+- Using a Group Create node with your bounding box and particle field as inputs,
+assign the particles that fall within the bounding box to a group (its name is up to you).
+  - This node should feed into a Wrangle Attribute node that uses VEX to remove all particles
+(except the current loop iteration particle) that fall within the bounding box
+from the particle field, effectively tagging them as "used up" in the placement of the brick
+  - If the number of particles within your bounding box equal the number of particles it
+would overlap if it were the first brick placed (e.g. 4 particles for a 2x2 block brick),
+then the current particle is a valid location at which to place a brick.
+  - If the number of particles within your bounding box is less than the number it would normally overlap,
+then a brick __should not__ be placed there (i.e. the loop should just continue to the next particle)
+- The two "if" statement branches in the above bullet points can be implemented using a Switch-If node,
+ which can be followed by a Split node to create two "outputs" from this logic: particles in a group tagging them as
+"places to put a brick on" and "places that did not have a brick placed at them".
 
 ## Exposing node parameters
 Allow a user to interact with your node as a singular tool by exposing certain parameters:
