@@ -74,3 +74,13 @@ Allow a user to interact with your node as a singular tool by exposing certain p
 - Changing the threshold at which a particle is determined to be a sloped brick instead of a block brick.
 - Adjusting the percentage of "top" particles that display as flat bricks, rather than placing no brick there at all.
 
+## Rendering
+Render at least one LEGO-ified mesh using the three-point lighting technique discussed in class, and apply a plastic-like material to your bricks.
+
+## Extra Credit
+- Rigid body simulation
+  - Simulate dropping your LEGO model and having its bricks separate from the force of the impact
+  - For even more credit, try adding vertical glue constraints to mimic the brick studs locking together
+- Add more brick types
+  - Use irregularly-shaped bricks such as a leaf to create terrain
+  - Refer to [stud.io](https://www.bricklink.com/v3/studio/download.page) for additional brick models
