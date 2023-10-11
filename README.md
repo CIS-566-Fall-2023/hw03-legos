@@ -4,6 +4,9 @@
 In this assignment, you will make a Houdini project that can convert any faceted mesh to a collection of LEGO pieces.
 You will continue your exploration of procedural modeling, while working with new Houdini nodes.
 
+Aditya has prepared [this video](https://drive.google.com/file/d/1G9gQGdfXqjnIJN506FEyxsK1wS7M55hL/view) to help explain
+some of the Houdini nodes you will use in this project.
+
 ![](lego_monster.png)
 ---
 
