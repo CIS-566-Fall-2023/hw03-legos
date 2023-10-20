@@ -3,7 +3,7 @@
 ## Result
 |Rendered result| Control panel|
 |:----:|:---:|
-|![res](https://github.com/LichengCAO/hw03-legos/assets/81556019/f730f1b9-ac8e-49e5-9d6f-6cada496c78b)|![controller](https://github.com/LichengCAO/hw03-legos/assets/81556019/95318b12-b825-45c3-ba4d-e55bb3ed9eea)|
+![renderE](https://github.com/LichengCAO/hw03-legos/assets/81556019/aeada1a8-e807-45a7-8590-1cddd3157ad2)|![controller](https://github.com/LichengCAO/hw03-legos/assets/81556019/95318b12-b825-45c3-ba4d-e55bb3ed9eea)|
 
 ## Project Overview
 In this assignment, you will make a Houdini project that can convert any faceted mesh to a collection of LEGO pieces.
