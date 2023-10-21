@@ -1,103 +1,18 @@
 # LEGO-ifying Meshes
 
 ## Project Overview
-In this assignment, you will make a Houdini project that can convert any faceted mesh to a collection of LEGO pieces.
-You will continue your exploration of procedural modeling, while working with new Houdini nodes.
+This is a Houdini project that can convert any faceted mesh to a collection of LEGO pieces.
 
 ## Result
-|Rendered result| Control panel|
-|:----:|:---:|
-![renderE](https://github.com/LichengCAO/hw03-legos/assets/81556019/aeada1a8-e807-45a7-8590-1cddd3157ad2)|![controller](https://github.com/LichengCAO/hw03-legos/assets/81556019/95318b12-b825-45c3-ba4d-e55bb3ed9eea)|
+<p align="center">
+ <img src="https://github.com/LichengCAO/hw03-legos/assets/81556019/aeada1a8-e807-45a7-8590-1cddd3157ad2"/>
+</p>
 
 ## Implementation
 |figure|step |
 |:----:|:---:|
-|![geotopt](https://github.com/LichengCAO/hw03-legos/assets/81556019/9b65f622-78d4-45a7-bbe7-87bfdc16e9b0)|This set of nodes help me convert geometry to a group of points|
-| ![colorblock](https://github.com/LichengCAO/hw03-legos/assets/81556019/89cebae7-ebd4-4ef3-89d4-cc59a4a2fff9)|These nodes read UV from the mesh and transfer the desired values(N, Cd) to points for next operations|
-|![avoidcollide](https://github.com/LichengCAO/hw03-legos/assets/81556019/0e3eaeab-089d-4d2e-80e6-c3a65155922c)|This block reads points from the group and split the points into 2 groups by checking if it has 3 nodes arounding it that fall in the 2x1x2 bounding box|
-|![findtop](https://github.com/LichengCAO/hw03-legos/assets/81556019/8119b735-61b4-46d3-bf43-445cac2b2150)|With the points that aren't in 2x1x2 bricks, I didn't use blocks to further split them based on the bounding box. Instead, I used pcfind to find points that have certain normal or don't have points above them and placed different bricks based on that information. |
-
-
-Aditya has prepared [this video](https://drive.google.com/file/d/1G9gQGdfXqjnIJN506FEyxsK1wS7M55hL/view) to help explain
-some of the Houdini nodes you will use in this project.
-
-![](lego_monster.png)
----
-
-## Creating your node
-Create a custom node in the nodes window that you will enter and add nodes within; this will be your LEGO-ifying node.
-
-## Set up some test geometry
-Use one of Houdini's Test Geometry nodes to start yourself off with a faceted mesh.
-Now you have something with which to visualize the results of your nodes as you progress in your implementation.
-
-## Converting a mesh to points
-- Use a VDB From Polygons node followed by a Convert VDB node to compute the closed volume of your mesh.
-- In a separate node chain, compute the bounding box of your mesh and then use a Points from Volume node to generate points in 3D space.
-  - The larger the particle separation, the larger your LEGO bricks will have to be in order to fill the space (and your mesh will be composed of fewer LEGO bricks).
-- Combine your VDB volume and 3D points using a Group Create node to find all of the points that fall within your mesh's volume.
-- Remove all of the points outside of that group with a Blast node.
-- In an Attribute Wrangle node, set the scale of your particles (`@pscale`) proportional to the particle separation (`@particlesep`) you defined in your Points from Volume node.
-- Finally, use an Attribute Transfer node to obtain color and surface normal information for each particle based on the original mesh.
-
-## Converting the points to LEGO bricks
-For this assignment, we require you to support three overall categories of LEGO brick:
-| Block bricks        | Slope bricks         | Flat bricks|
-| -----------         | -----------          |------              |
-| ![](block_brick.png)| ![](slope_brick.png) | ![](flat_brick.png)|
-
-In order to correctly place each type, you will need to categorize your mesh points.
-- Slope bricks should be placed at any particle whose transferred surface normal is sufficiently dissimilar to the vector <0, 1, 0>.
-You will ultimately allow the user to specify the exact threshold of dissimiliarity, so you may set it to whatever value you wish for now.
-- Flat bricks should only be placed on particles that do not have another particle above them.
-You can use an Attribute Wrangle node to search the immediate area of each particle using VEX code.
-For example, you could find the number of points above each point using `pcfind`: `int ptsAbove[] = pcfind(0, "P", location_to_search, search_radius, 1);`
-If `location_to_search` is `@P` plus some vertical offset, you can effectively search only the area above each particle.
-- Block bricks (e.g. 2x2, 2x1, and 1x1 bricks) can be placed anywhere else.
-
-Consider assigning particles to different groups based on the criteria above, then placing bricks based on each particle's group.
-For example, you could set a particle to be in a "top of mesh" group like so using VEX:
-```
-if (len(ptsAbove) == 0 && len(ptsBelow) == 1) {
-    @group_top = 1;
-}
-```
-
-## Preventing LEGO bricks from intersecting
-Since we ask you to create your LEGO-ified model from bricks that are not simply 1x1 in size, you will need to make sure that
-the bricks you place are not intersecting other bricks. To do so, you will need to perform a bounding box test for each brick:
-- Using a pair of Block Begin and Block End nodes, iterate over every particle in your mesh volume
-  - To examine each particle individually, you can compare its `@ptnum` to the iteration number (`detail(1, "iteration")`).
-- For the particle you're examining, use a Copy to Points node to place a Box at its location,
-where the Box's size is the size of the LEGO brick you're trying to place. Thsi will act as your potential brick's bounding box.
-- Using a Group Create node with your bounding box and particle field as inputs,
-assign the particles that fall within the bounding box to a group (its name is up to you).
-  - This node should feed into a Wrangle Attribute node that uses VEX to remove all particles
-(except the current loop iteration particle) that fall within the bounding box
-from the particle field, effectively tagging them as "used up" in the placement of the brick
-  - If the number of particles within your bounding box equal the number of particles it
-would overlap if it were the first brick placed (e.g. 4 particles for a 2x2 block brick),
-then the current particle is a valid location at which to place a brick.
-  - If the number of particles within your bounding box is less than the number it would normally overlap,
-then a brick __should not__ be placed there (i.e. the loop should just continue to the next particle)
-- The two "if" statement branches in the above bullet points can be implemented using a Switch-If node,
- which can be followed by a Split node to create two "outputs" from this logic: particles in a group tagging them as
-"places to put a brick on" and "places that did not have a brick placed at them".
-
-## Exposing node parameters
-Allow a user to interact with your node as a singular tool by exposing certain parameters:
-- Adjusting the scale of the bricks that compose your model, allowing it to be made from more or fewer bricks.
-  - This should adjust the spacing of your particles as well as the scale of the LEGO brick FBXs
-- Changing the threshold at which a particle is determined to be a sloped brick instead of a block brick.
-- Adjusting the percentage of "top" particles that display as flat bricks, rather than placing no brick there at all.
-
-## Rendering
-Render at least one LEGO-ified mesh using the three-point lighting technique discussed in class, and apply a plastic-like material to your bricks.
-
-## Extra Credit
-- Rigid body simulation
-  - Simulate dropping your LEGO model and having its bricks separate from the force of the impact
-  - For even more credit, try adding vertical glue constraints to mimic the brick studs locking together
-- Add more brick types
-  - Use irregularly-shaped bricks such as a leaf to create terrain
-  - Refer to [stud.io](https://www.bricklink.com/v3/studio/download.page) for additional brick models
+|<img src="https://github.com/LichengCAO/hw03-legos/assets/81556019/9b65f622-78d4-45a7-bbe7-87bfdc16e9b0" width="300"/>|This set of nodes help me convert geometry into a group of points. I used a `bound` node and a `pointsfromvolume` node to generate a set of points within the bounding box of the input mesh and used `vdbfrompolygons` and `convertvdb` to prepare the input mesh so that it could be used as the input of `group` node which gave me a group of points within the mesh. And I utilized the `blast` node to knocked out points that weren't in the mesh.|
+| <img src="https://github.com/LichengCAO/hw03-legos/assets/81556019/89cebae7-ebd4-4ef3-89d4-cc59a4a2fff9" width="300"/>|I used these nodes to read UV from the mesh and transfer the desired values(N, d) to points for following operations. First, I used the attribfrommap node to apply a texture map to the input mesh. And then I used `attribtransfer` to transfer both color and normal information onto the points for next steps. I also incorporated an `attribwrangle` node to establish the scale of the points, ensuring they matched the point separation value of the `pointsfromvolume` node. This adjustment facilitates the alignment of the scale with the density of the point group in subsequent stages.|
+|![avoidcollide](https://github.com/LichengCAO/hw03-legos/assets/81556019/0e3eaeab-089d-4d2e-80e6-c3a65155922c)|This block reads points from the group and splits the points into 2 groups. I employed a `group` node to identify points within the 2x1x2 bounding box, and I used a `switchif` node to determine points that have three other adjacent points, designating them as suitable locations for placing 2x1x2 bricks.|
+|![findtop](https://github.com/LichengCAO/hw03-legos/assets/81556019/8119b735-61b4-46d3-bf43-445cac2b2150)|For the points that weren't in 2x1x2 bricks, I didn't use blocks to further split them based on the bounding box. Instead, I used `pcfind` to find points that have certain normal or don't have points above them, splited the points with `split` node and placed different bricks based on that information. Finally, I used `merge` node to merge all kinds of bricks into one output.|
+|![controller](https://github.com/LichengCAO/hw03-legos/assets/81556019/95318b12-b825-45c3-ba4d-e55bb3ed9eea)|Furthermore, I added a null node to make certain parameters accessible for users. "Normal tolerance" is used to decide whether a slop brick should be placed. Since I used the dot product of the desired normal and the normal of the point to check if the point can be considered as a slop point, I can simply use the value of "Normal tolerance" as the threshold. I also provided "Portion of flat" to allow users to set the percentage of "top" particles displayed as flat bricks. I simply added a random number in the `attribwrangle` node which was used to find the flat bricks, and said that only when the random number is below the "portion of flat" could the point be considered as a point that the flat bricks can be placed on.
