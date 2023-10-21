@@ -1,5 +1,9 @@
 # LEGO-ifying Meshes
 
+## Project Overview
+In this assignment, you will make a Houdini project that can convert any faceted mesh to a collection of LEGO pieces.
+You will continue your exploration of procedural modeling, while working with new Houdini nodes.
+
 ## Result
 |Rendered result| Control panel|
 |:----:|:---:|
@@ -12,9 +16,7 @@
 | ![colorblock](https://github.com/LichengCAO/hw03-legos/assets/81556019/89cebae7-ebd4-4ef3-89d4-cc59a4a2fff9)|These nodes read UV from the mesh and transfer the desired values(N, Cd) to points for next operations|
 |![avoidcollide](https://github.com/LichengCAO/hw03-legos/assets/81556019/0e3eaeab-089d-4d2e-80e6-c3a65155922c)|This block reads points from the group and split the points into 2 groups by checking if it has 3 nodes arounding it that fall in the 2x1x2 bounding box|
 |![findtop](https://github.com/LichengCAO/hw03-legos/assets/81556019/8119b735-61b4-46d3-bf43-445cac2b2150)|With the points that aren't in 2x1x2 bricks, I didn't use blocks to further split them based on the bounding box. Instead, I used pcfind to find points that have certain normal or don't have points above them and placed different bricks based on that information. |
-## Project Overview
-In this assignment, you will make a Houdini project that can convert any faceted mesh to a collection of LEGO pieces.
-You will continue your exploration of procedural modeling, while working with new Houdini nodes.
+
 
 Aditya has prepared [this video](https://drive.google.com/file/d/1G9gQGdfXqjnIJN506FEyxsK1wS7M55hL/view) to help explain
 some of the Houdini nodes you will use in this project.
