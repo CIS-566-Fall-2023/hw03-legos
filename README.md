@@ -32,3 +32,5 @@ https://github.com/Jeff-Ling/hw03-legos/assets/74678923/6249256a-1329-45a5-aeff-
   3.3 Flat Bricks
        Use the same trick I used when placing 2x1 bricks.
        ![](Images/4.png)  
+
+## Extra Credit: Rigid body simulation
