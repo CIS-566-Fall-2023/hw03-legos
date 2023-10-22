@@ -14,10 +14,9 @@ https://github.com/IwakuraRein/hw03-legos/assets/28486541/c432c0e5-7fb5-4202-8e4
 
 ## Brick Types
 
-|   |   |   |   |   |
+| 1x1 | 1x2 | slope | flatten 1 | flatten2  |
 |---|---|---|---|---|
 | ![](imgs/1x1.png) | ![](imgs/1x2.png) | ![](imgs/slope.png) | ![](imgs/flatten1.png) | ![](imgs/flatten2.png) |
-| 1x1 | 1x2 | slope | flatten 1 | flatten2  |
 
 ## Process
 
