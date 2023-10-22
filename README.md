@@ -19,6 +19,14 @@ Then, with a for-loop, particles are divided according to the block size, with i
 ![](/parameters.png)
 These parameters are exposed to outside of the node. Block size is the unit size of each block. Slope threhold is the threshold value of normal.y to decide whether a top 1x1 block is slop block. Top flat brick % decided how many of the top flat brick will show up. The brick vacancy decide the size of gap between each block, to make it looks more realistic. The texture path decided the texture used in the lego.
 
+## Brick type
+
+- brick_1x1
+- brick_2x2
+- slope_1x1
+- tile_1x1_squre
+- tile_2x1
+
 ## Physics simulation
 
 Physics simulation is based on DOP network. Inside the DOP network, the lego model is imported with RBD packed object, with previous pack nodes for each lego brick in lego-ify geometry node. Then a rigidbody solver node is added for it. Also, a static plane is added, with static solver. In the end, don't forget to add gravity.
