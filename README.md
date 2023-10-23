@@ -8,7 +8,7 @@ Currently support:
 | ![](block_brick.png)| ![](slope_brick.png) | ![](flat_brick.png)|
 
 ## Result
-![](5.png)  
+![](6.png)  
 
 ## Steps:
 1. Converting a mesh to points  
