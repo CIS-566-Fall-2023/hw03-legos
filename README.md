@@ -1,5 +1,7 @@
 # LEGO-ifying Meshes
 
+## Using Late Day - 10/23 4:25 pm
+
 ## Project Overview
 In this assignment, you will make a Houdini project that can convert any faceted mesh to a collection of LEGO pieces.
 You will continue your exploration of procedural modeling, while working with new Houdini nodes.
