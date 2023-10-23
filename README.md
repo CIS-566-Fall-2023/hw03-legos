@@ -3,6 +3,8 @@
 ## Project Overview
 ![](res/res.jpg)
 
+![](res/res.gif)
+
 ## Process
 ### Mesh to points
 I use `VDB From Polygons` and `Points from Volume` nodes to specify all the points needed in the Lego block generation process. I use a group and blast node to keep only all needed. Also, I used a `attribTransfer` node to transfer the color and normal property from the corresponding texture map.
@@ -36,3 +38,6 @@ Here are examples for the geometry with different voxel size:
 | Voxel Size = 0.1       | Voxel Size = 0.05         | Voxel Size = 0.03 |
 | -----------         | -----------          |------      |
 | ![](res/0.1.png)| ![](res/0.05.png) | ![](res/0.03.png)|
+
+### Simulation
+I use a `DOP network` node and `rigidbodysolver` node to simulate the physic motion of the dropping lego.
