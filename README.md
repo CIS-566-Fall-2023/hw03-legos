@@ -28,4 +28,9 @@ I created a simple principled shader for the bricks, whose roughness is set to 0
 - Rigid body simulation
   - Simulate dropping a LEGO model and having its bricks separate from the force of the impact. Here is the result:
 
+https://github.com/GrahamZen/hw03-legos/assets/31180310/4716ed3f-1857-473d-bb45-185c7103add5
+
   - Vertical glue constraints is added to mimic the brick studs locking together. Here is the result:
+
+https://github.com/GrahamZen/hw03-legos/assets/31180310/8da83c55-21c5-4817-a1ef-09d03e6dbdab
+
