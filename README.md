@@ -40,4 +40,5 @@ Here are examples for the geometry with different voxel size:
 | ![](res/0.1.png)| ![](res/0.05.png) | ![](res/0.03.png)|
 
 ### Simulation
-I use a `DOP network` node and `rigidbodysolver` node to simulate the physic motion of the dropping lego.
+I use a `DOP network` node and `rigidbodysolver` node to simulate the physic motion of the dropping lego. Also, I adopt a three-point light to render the final picture.
+![](res/three_light.png)
