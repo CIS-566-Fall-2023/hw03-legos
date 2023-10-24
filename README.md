@@ -68,3 +68,10 @@ I rendered some procedural venetian temples that I made in a separate procedural
 
 ![](houselego2.png)
 
+## Additional Photo (Test Dino Monster Dude)
+
+Here are some photos with the dino since I realized that some elements aren't observable in the house renders. It took too long to legofy so I didn't want to run it again :(. 
+This Houdini screenshot shows a large-legoed dino dude with all brick types, and the exposed parameters. 
+
+![](houdinilego.png)
+
