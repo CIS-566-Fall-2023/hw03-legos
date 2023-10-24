@@ -4,11 +4,9 @@
 In this assignment, you will make a Houdini project that can convert any faceted mesh to a collection of LEGO pieces.
 You will continue your exploration of procedural modeling, while working with new Houdini nodes.
 
-Aditya has prepared [this video](https://drive.google.com/file/d/1G9gQGdfXqjnIJN506FEyxsK1wS7M55hL/view) to help explain
-some of the Houdini nodes you will use in this project.
 
-![](lego_monster.png)
----
+![](houselego1.png)
+![](houselego2.png)
 
 ## Creating your node
 Create a custom node in the nodes window that you will enter and add nodes within; this will be your LEGO-ifying node.
@@ -80,10 +78,3 @@ Allow a user to interact with your node as a singular tool by exposing certain p
 ## Rendering
 Render at least one LEGO-ified mesh using the three-point lighting technique discussed in class, and apply a plastic-like material to your bricks.
 
-## Extra Credit
-- Rigid body simulation
-  - Simulate dropping your LEGO model and having its bricks separate from the force of the impact
-  - For even more credit, try adding vertical glue constraints to mimic the brick studs locking together
-- Add more brick types
-  - Use irregularly-shaped bricks such as a leaf to create terrain
-  - Refer to [stud.io](https://www.bricklink.com/v3/studio/download.page) for additional brick models
