@@ -24,6 +24,14 @@ Mesh points are categorized to place each block type correctly.
 - Flat bricks are only be placed on particles that do not have another particle above them.
 - Block bricks (2x2 and 1x1 bricks) are placed for all other points.
 
+## Slope and Flat Bricks
+- I first used VEX to find top bricks, that is bricks with no other bricks above them, using the method outlined above. I created an attribute to remember if each point is a top brick.
+- I then moved to sloped bricks, in which I compare an angle threshold, chosen by the user, to the angle between the point's normal and <0,1,0>. If the angle fell within the desired bounds, that point received an attribute telling me that it was a sloped bricks.
+  - The normals for each point were passed using an Attribute Transfer node from the original input geometry. 
+  - Sloped bricks must also be top bricks.
+  - I oriented sloped bricks by setting their @N.y to 0, and their @N.x or @N.y to 1.0, depending on which was originally larger. This places the slope in the direction that makes it the closest representation to the curves of the original mesh.
+  - I then copied the corresponding bricks to the points based on their attributes. 
+
 ## Preventing LEGO bricks from intersecting
 Since the implementation uses differing-sized bricks, we make sure that
 the bricks placed are not intersecting other bricks by performing a bounding box test for each brick:
@@ -53,7 +61,9 @@ The following parameters are exposed for user adjustment:
 - The threshold at which a particle is determined to be a sloped brick instead of a block brick.
 - The percentage of "top" particles that display as flat bricks, rather than placing no brick there at all.
 
-## Rendering
+## Rendering and Color
+To shade the lego mesh, I extracted the texture as a jpg from Houdini's test dino monster mesh. 
+I saved it to my files and then brought it into the network using a Attribute Transfer node that passed the colors to the points in the mesh point cloud. 
 I rendered some procedural venetian temples that I made in a separate procedural tool using the legofyer and an environment light. 
 
 ![](houselego2.png)
