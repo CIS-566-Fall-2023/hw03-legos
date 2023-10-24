@@ -5,8 +5,7 @@ In this assignment, you will make a Houdini project that can convert any faceted
 You will continue your exploration of procedural modeling, while working with new Houdini nodes.
 
 
-![](houselego1.png)
-![](houselego2.png)
+![](houselego1.png) ![](houselego2.png)
 
 ## Creating your node
 Create a custom node in the nodes window that you will enter and add nodes within; this will be your LEGO-ifying node.
