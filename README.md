@@ -1,3 +1,5 @@
+Taking a late day!
+
 # LEGO-ifying Meshes
 
 ## Project Overview
