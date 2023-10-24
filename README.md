@@ -10,7 +10,6 @@ My overall goal was to create something that looks like this:
 I decided to use a pumpkin mesh instead of the default toy mesh, and here is my final result!
 ![](pic1.png)
 ![](pic2.png)
-![](pic3.png)
 
 ---
 
@@ -18,9 +17,7 @@ I decided to use a pumpkin mesh instead of the default toy mesh, and here is my 
 I created a custom node in the network window to hold all of my work. The process begins with an input 3D model, and the output is a LEGOified version of that model, consisting of 3 different LEGO types: sloped, flat, and block bricks. This custom node sits at the top level of my scene, alongside the camera and various lights.
 
 ## Step 2: Set up some test geometry
-Inside the custom LEGO-ifying node, it's time to load a fun model to work with! For this project, I used a 3D model of a Luma from the game Super Mario Galaxy.
-
-Now you have something with which to visualize the results of your nodes as you progress in your implementation.
+Inside the custom LEGO-ifying node, it's time to load a fun model to work with! For this project, I used a 3D model of a pumpkin.
 
 ## Converting the mesh to points
 - Used a VDB From Polygons node followed by a Convert VDB node to compute the closed volume of the mesh.
@@ -45,27 +42,27 @@ I used an Attribute Wrangle node to search the immediate area of each particle u
 
 ## Preventing LEGO bricks from intersecting
 I made sure that the bricks do not intersecting other bricks. To do so, I perform a bounding box test for each brick:
-- Using a pair of Block Begin and Block End nodes, iterate over every particle in your mesh volume
-  - To examine each particle individually, compare its `@ptnum` to the iteration number (`detail(1, "iteration")`).
-- For the particle you're examining, use a Copy to Points node to place a Box at its location,
-where the Box's size is the size of the LEGO brick you're trying to place. Thsi will act as your potential brick's bounding box.
-- Using a Group Create node with your bounding box and particle field as inputs,
-assign the particles that fall within the bounding box to a group (its name is up to you).
-  - This node should feed into a Wrangle Attribute node that uses VEX to remove all particles
+- Using a pair of Block Begin and Block End nodes, iterated over every particle in the mesh volume
+  - To examine each particle individually, compared its `@ptnum` to the iteration number (`detail(1, "iteration")`).
+- For the particle currently being examined, used a Copy to Points node to place a Box at its location,
+where the Box's size is the size of the LEGO brick being placed. This acts as the potential brick's bounding box.
+- Using a Group Create node with the bounding box and particle field as inputs,
+assigned the particles that fall within the bounding box to a group.
+  - This node was fed into a Wrangle Attribute node that uses VEX to remove all particles
 (except the current loop iteration particle) that fall within the bounding box
 from the particle field, effectively tagging them as "used up" in the placement of the brick
-  - If the number of particles within your bounding box equal the number of particles it
+  - If the number of particles within the bounding box equals the number of particles it
 would overlap if it were the first brick placed (e.g. 4 particles for a 2x2 block brick),
 then the current particle is a valid location at which to place a brick.
-  - If the number of particles within your bounding box is less than the number it would normally overlap,
-then a brick __should not__ be placed there (i.e. the loop should just continue to the next particle)
-- The two "if" statement branches in the above bullet points can be implemented using a Switch-If node,
- which can be followed by a Split node to create two "outputs" from this logic: particles in a group tagging them as
+  - If the number of particles within the bounding box is less than the number it would normally overlap,
+then a brick __should not__ be placed there (i.e. the loop just continues to the next particle)
+- The two "if" statement branches in the above bullet points were implemented using a Switch-If node,
+ which were followed by a Split node to create two "outputs" from this logic: particles in a group tagging them as
 "places to put a brick on" and "places that did not have a brick placed at them".
 
 ## Exposing node parameters
-Allow a user to interact with your node as a singular tool by exposing certain parameters:
-- Adjusting the scale of the bricks that compose your model, allowing it to be made from more or fewer bricks.
-  - This should adjust the spacing of your particles as well as the scale of the LEGO brick FBXs
+Allowed the user to interact with the node as a singular tool by exposing certain parameters:
+- Adjusting the scale of the bricks that compose the model, allowing it to be made from more or fewer bricks.
+  - This adjusts the spacing of the mesh particles as well as the scale of the LEGO brick FBXs
 - Changing the threshold at which a particle is determined to be a sloped brick instead of a block brick.
 - Adjusting the percentage of "top" particles that display as flat bricks, rather than placing no brick there at all.
