@@ -4,6 +4,8 @@
 
 ![](result.png)
 
+![](result2.png)
+
 ## Converting a mesh to points
 To uniformly distribute points within a mesh, I encapsulated the mesh in a bounding box, created a point matrix, and converted it to a point cloud using the vdbfrompolygons node.
 
