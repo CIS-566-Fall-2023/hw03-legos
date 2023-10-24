@@ -17,12 +17,15 @@ You will continue your exploration of procedural modeling, while working with ne
 ### Project Specification:
 
 - user interface is at controller node:
+  
     ![](./ui.png)
 
 - three-point lighting & rigid body simulation
+  
     ![](./light.png)
 
 - overall procedure:
+  
     ![](./procedure.png)
 
 
