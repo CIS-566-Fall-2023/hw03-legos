@@ -2,7 +2,7 @@
 
 ![Image](https://github.com/Diana-ou/hw03-legos/blob/main/Lego%20Dino%20F1.jpg)
 [see the HIP file here!](https://drive.google.com/file/d/1OJE3G5J6TwUa0AFRf9qrRIE1JXpcrs3Z/view?usp=sharing)
-[Video Demo](https://drive.google.com/file/d/1HzRkZeabLmmwkA_GAhiIFzLpTP8KAu1-/view?usp=sharing)
+[Video Demo](https://drive.google.com/file/d/1iGNYCsmmIDyEtPZX4aAsPN7eOOGNvBrS/view?usp=sharing)
 
 ## Objective
 - More advanced Houdini exploration; learn how to voxellize meshes into LEGO bricks!
