@@ -1,7 +1,7 @@
 # LEGO-ifying Meshes
 
 ## Project Overview
-![](untitle1.png)
+![](untitled1.png)
 This is a Houdini project that can convert any faceted mesh to a collection of LEGO pieces.
 
 The bricks used: 
