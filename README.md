@@ -37,3 +37,16 @@ A greedy algorithm fills the volume in this way:
 | Top Cap 0%        | Top Cap 50%         | Top Cap 100% |
 | -----------         | -----------          |------              |
 | ![](render/top0.jpg)| ![](render/top50.jpg) | ![](render/img1.jpg)|
+
+---
+
+## Results
+
+|![](render/flingCalavera.jpg)|
+|---|
+|![](render/flingPumpkin.jpg)|
+|![](render/wahoo.jpg)|
+
+## Credits
+
+Calavera and pumpkin models and textures by Andre Edgarian
