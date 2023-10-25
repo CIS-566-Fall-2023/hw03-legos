@@ -1,5 +1,13 @@
 # LEGO-ifying Meshes
 
+## Submission | Aboudi Rai
+
+### Final Result: Rubber Toy w/ 0.04 Point Separation
+![](img/toy_blocks.png)
+
+![](img/toy_render.png)
+
+
 ## Project Overview
 In this assignment, you will make a Houdini project that can convert any faceted mesh to a collection of LEGO pieces.
 You will continue your exploration of procedural modeling, while working with new Houdini nodes.
