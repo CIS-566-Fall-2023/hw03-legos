@@ -4,7 +4,7 @@
 
 ## Project Overview
 This is a Houdini project that can "LEGO-ify" 3D models! Using procedural modeling techniques and VEX, the project converts any faceted mesh into a collection of LEGO pieces.
-![](render1.png)
+![](render1.jpg)
 
 |<img src="original.png" width="100%">|<img src="lego1.png" width="100%">|
 |:-:|:-:|
