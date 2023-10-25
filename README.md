@@ -1,9 +1,9 @@
-Completed capybara:
-
-<img width="860" alt="image" src="https://github.com/sherryli02/hw03-legos/assets/97941858/cfbb1153-0ccc-424f-af9f-8362abbeb9b3">
+<img width="949" alt="image" src="https://github.com/sherryli02/hw03-legos/assets/97941858/c27f224c-e528-4e7b-b427-a6193607e8f9">
 
 
-Unfortunately my renders are taking longer than anticipated, and I'll update with them as soon as they're done.
+https://github.com/sherryli02/hw03-legos/assets/97941858/084baaa5-85a2-408c-9d9d-7f86ce86b73f
+
+
 
 # LEGO-ifying Meshes
 
@@ -33,6 +33,9 @@ The user can interact with the output through a singular controller node with ce
 - The scale of the bricks that compose the model.
 - The threshold at which a point is determined to be a sloped brick instead of a block brick.
 - The percentage of "top" points that display as flat bricks versus placing no brick there at all.
+
+<img width="621" alt="image" src="https://github.com/sherryli02/hw03-legos/assets/97941858/a4f1f8c9-b72d-4ce0-b35d-6904e0882ade">
+
 
 
 ## Extra Credit
