@@ -1,6 +1,6 @@
 Purpose: The purpose of this project is to use Houdini to convert an input mesh into lego bricks. 
 
-Steps: 
+Implementation:
 
 The first step was to use a pointsfromvolume node to find the points contained inside the mesh. 
 
