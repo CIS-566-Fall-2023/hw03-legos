@@ -1,89 +1,47 @@
 # LEGO-ifying Meshes
 
 ## Project Overview
-In this assignment, you will make a Houdini project that can convert any faceted mesh to a collection of LEGO pieces.
-You will continue your exploration of procedural modeling, while working with new Houdini nodes.
+For this project, I implemented a Legoify procedural custom node in Houdini, where the input can be any type of block with a set dimension and a mesh, and the output is that same mesh but modified with procedural lego bricks. 
 
-Aditya has prepared [this video](https://drive.google.com/file/d/1G9gQGdfXqjnIJN506FEyxsK1wS7M55hL/view) to help explain
-some of the Houdini nodes you will use in this project.
+Here is an image of the final product:
+![](HoudiniShots/outputUniform1.png)
 
-![](lego_monster.png)
----
+## Extracting the Points
+To extract the points from the mesh, the main node that I used was the pointsFromVolume node, which took any mesh that I gave it and turned the mesh into a collection of points that are each separated by a controllable amount. Displayed below is the node structure of the pointsFromVolume node:
+![](HoudiniShots/1.png)
+I would then group everything into a points group, that would be the main set of groups that I needed to divide.
 
-## Creating your node
-Create a custom node in the nodes window that you will enter and add nodes within; this will be your LEGO-ifying node.
+## Dividing the Groups
+There are three main groups that my custom node considers, which are groups for blocks that are placed at the top of the mesh, groups for slanted (or sloped) blocks, and groups for regularly shaped blocks. To extract the group of points at the top of the mesh, I used the pcfind() function, which finds a group of points around a set radius from the center point. In this case, the pcfind() function should only be used to check whether or not there exists a point above the current point, which indicates that our current point is not a top point. Therefore, if pcfind() finds no solution, then that point is indeed a top point, which I then placed in the top group. Below is the Attribute Wrangle code that I used to isolate the top points into two separate groups:
+![](HoudiniShots/2.png)
+I also had this Attribute Wrangle node placed this high because I would need the values in the top points group for filling in the rest of the bricks in a subsequent loop.
 
-## Set up some test geometry
-Use one of Houdini's Test Geometry nodes to start yourself off with a faceted mesh.
-Now you have something with which to visualize the results of your nodes as you progress in your implementation.
+### Slanted and Flat Top Bricks
+Whilst dividing the groups, I then needed to figure out how to isolate points that would be used for slanted bricks from the rest of the top group. To this, I needed to check whether there was enough of a dissimilarity of the surface normal of the current point with the vector (0, 1, 0). If the threshold difference was reached, I would place those points into the slanted group, whereas the rest of the points would be replaced with a flat 1x1 block. Below is a snippet of code that I used in another Attribute Wrangle node to isolate the slanted brick points:
+![](HoudiniShots/3.png)
 
-## Converting a mesh to points
-- Use a VDB From Polygons node followed by a Convert VDB node to compute the closed volume of your mesh.
-- In a separate node chain, compute the bounding box of your mesh and then use a Points from Volume node to generate points in 3D space.
-  - The larger the particle separation, the larger your LEGO bricks will have to be in order to fill the space (and your mesh will be composed of fewer LEGO bricks).
-- Combine your VDB volume and 3D points using a Group Create node to find all of the points that fall within your mesh's volume.
-- Remove all of the points outside of that group with a Blast node.
-- In an Attribute Wrangle node, set the scale of your particles (`@pscale`) proportional to the particle separation (`@particlesep`) you defined in your Points from Volume node.
-- Finally, use an Attribute Transfer node to obtain color and surface normal information for each particle based on the original mesh.
+## The Bricking Formula
+The Greedy Algorithm to Check for Intersections of Bricks, or the Bricking Formula, is a for loop that iterates through all of the non-top points, checks for points lying within a bounding box that is the dimensions of the current block that we want to place in the current point, and if points do lie within the bounding box, we remove them from the points group to be "bricked". Below is a screenshot of the for loop implementation of the greedy algorithm to check for brick intersections:
+![](HoudiniShots/4.png)
+As observed in the screenshot, I have exposed the statement that shows points that I am placing into the bricks group, which is the group that will have the legos placed over them. After the forloop finishes executing, I get a group of points such that only one point lies in the bounding box. This group will then get passed into a copyToPoints node with the lego object, which then completes the rendering process.
 
-## Converting the points to LEGO bricks
-For this assignment, we require you to support three overall categories of LEGO brick:
-| Block bricks        | Slope bricks         | Flat bricks|
-| -----------         | -----------          |------              |
-| ![](block_brick.png)| ![](slope_brick.png) | ![](flat_brick.png)|
+## Progress Screenshots
+As I had quite a bit of trouble attempting to wire the nodes together, I took a series of screenshots documenting my progress throughout the creation of this node:
+![](HoudiniShots/leogifyWIP.png)
 
-In order to correctly place each type, you will need to categorize your mesh points.
-- Slope bricks should be placed at any particle whose transferred surface normal is sufficiently dissimilar to the vector <0, 1, 0>.
-You will ultimately allow the user to specify the exact threshold of dissimiliarity, so you may set it to whatever value you wish for now.
-- Flat bricks should only be placed on particles that do not have another particle above them.
-You can use an Attribute Wrangle node to search the immediate area of each particle using VEX code.
-For example, you could find the number of points above each point using `pcfind`: `int ptsAbove[] = pcfind(0, "P", location_to_search, search_radius, 1);`
-If `location_to_search` is `@P` plus some vertical offset, you can effectively search only the area above each particle.
-- Block bricks (e.g. 2x2, 2x1, and 1x1 bricks) can be placed anywhere else.
+![](HoudiniShots/legoDinoWIP.png)
 
-Consider assigning particles to different groups based on the criteria above, then placing bricks based on each particle's group.
-For example, you could set a particle to be in a "top of mesh" group like so using VEX:
-```
-if (len(ptsAbove) == 0 && len(ptsBelow) == 1) {
-    @group_top = 1;
-}
-```
+## Final Renders
+![](HoudiniShots/itBricked!.png)
 
-## Preventing LEGO bricks from intersecting
-Since we ask you to create your LEGO-ified model from bricks that are not simply 1x1 in size, you will need to make sure that
-the bricks you place are not intersecting other bricks. To do so, you will need to perform a bounding box test for each brick:
-- Using a pair of Block Begin and Block End nodes, iterate over every particle in your mesh volume
-  - To examine each particle individually, you can compare its `@ptnum` to the iteration number (`detail(1, "iteration")`).
-- For the particle you're examining, use a Copy to Points node to place a Box at its location,
-where the Box's size is the size of the LEGO brick you're trying to place. Thsi will act as your potential brick's bounding box.
-- Using a Group Create node with your bounding box and particle field as inputs,
-assign the particles that fall within the bounding box to a group (its name is up to you).
-  - This node should feed into a Wrangle Attribute node that uses VEX to remove all particles
-(except the current loop iteration particle) that fall within the bounding box
-from the particle field, effectively tagging them as "used up" in the placement of the brick
-  - If the number of particles within your bounding box equal the number of particles it
-would overlap if it were the first brick placed (e.g. 4 particles for a 2x2 block brick),
-then the current particle is a valid location at which to place a brick.
-  - If the number of particles within your bounding box is less than the number it would normally overlap,
-then a brick __should not__ be placed there (i.e. the loop should just continue to the next particle)
-- The two "if" statement branches in the above bullet points can be implemented using a Switch-If node,
- which can be followed by a Split node to create two "outputs" from this logic: particles in a group tagging them as
-"places to put a brick on" and "places that did not have a brick placed at them".
+![](HoudiniShots/proof..png)
 
-## Exposing node parameters
-Allow a user to interact with your node as a singular tool by exposing certain parameters:
-- Adjusting the scale of the bricks that compose your model, allowing it to be made from more or fewer bricks.
-  - This should adjust the spacing of your particles as well as the scale of the LEGO brick FBXs
-- Changing the threshold at which a particle is determined to be a sloped brick instead of a block brick.
-- Adjusting the percentage of "top" particles that display as flat bricks, rather than placing no brick there at all.
+![](HoudiniShots/victoryRoyale.png)
 
-## Rendering
-Render at least one LEGO-ified mesh using the three-point lighting technique discussed in class, and apply a plastic-like material to your bricks.
+![](HoudiniShots/sunsetCow.png)
 
-## Extra Credit
-- Rigid body simulation
-  - Simulate dropping your LEGO model and having its bricks separate from the force of the impact
-  - For even more credit, try adding vertical glue constraints to mimic the brick studs locking together
-- Add more brick types
-  - Use irregularly-shaped bricks such as a leaf to create terrain
-  - Refer to [stud.io](https://www.bricklink.com/v3/studio/download.page) for additional brick models
+![](HoudiniShots/sunsetCowRendered.png)
+
+![](HoudiniShots/sunsetCowRender2.png)
+
+![](HoudiniShots/closeUpCow.png)
