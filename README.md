@@ -1,16 +1,9 @@
 # LEGO-ifying Meshes
 
-## Using Late Day - 10/23 4:25 pm
+### Used Late Day - 10/23 4:25 pm
 
 ## Project Overview
-In this assignment, you will make a Houdini project that can convert any faceted mesh to a collection of LEGO pieces.
-You will continue your exploration of procedural modeling, while working with new Houdini nodes.
-
-Aditya has prepared [this video](https://drive.google.com/file/d/1G9gQGdfXqjnIJN506FEyxsK1wS7M55hL/view) to help explain
-some of the Houdini nodes you will use in this project.
-
-![](lego_monster.png)
----
+This is a Houdini project that can "LEGO-ify" 3D models! Using procedural modeling techniques and VEX, the project converts any faceted mesh into a collection of LEGO pieces.
 
 ## Creating your node
 Create a custom node in the nodes window that you will enter and add nodes within; this will be your LEGO-ifying node.
@@ -29,7 +22,7 @@ Now you have something with which to visualize the results of your nodes as you 
 - Finally, use an Attribute Transfer node to obtain color and surface normal information for each particle based on the original mesh.
 
 ## Converting the points to LEGO bricks
-For this assignment, we require you to support three overall categories of LEGO brick:
+This project supports ==three overall categories of LEGO brick:
 | Block bricks        | Slope bricks         | Flat bricks|
 | -----------         | -----------          |------              |
 | ![](block_brick.png)| ![](slope_brick.png) | ![](flat_brick.png)|
