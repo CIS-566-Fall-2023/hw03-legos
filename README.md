@@ -24,7 +24,7 @@ The bricks used:
 #### Changing the threshold at which a particle is determined to be a sloped brick instead of a block brick
 | few sloped bricks |  more sloped bricks| 
 |---|---|
-|![](less_sloe.png) | ![](more_slope.png)|
+|![](less_slope.png) | ![](more_slope.png)|
 <br/>
 
 #### Adjusting the percentage of "top" particles that display as flat bricks, rather than placing no brick there at all
