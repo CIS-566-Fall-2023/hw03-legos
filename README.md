@@ -1,5 +1,8 @@
 # LEGO-ifying Meshes
 
+![](img/render.jpg)
+
+
 ## Project Overview
 In this assignment, you will make a Houdini project that can convert any faceted mesh to a collection of LEGO pieces.
 You will continue your exploration of procedural modeling, while working with new Houdini nodes.
@@ -7,7 +10,7 @@ You will continue your exploration of procedural modeling, while working with ne
 Aditya has prepared [this video](https://drive.google.com/file/d/1G9gQGdfXqjnIJN506FEyxsK1wS7M55hL/view) to help explain
 some of the Houdini nodes you will use in this project.
 
-![](lego_monster.png)
+<!-- ![](lego_monster.png) -->
 ---
 
 ## Creating your node
@@ -31,6 +34,7 @@ For this assignment, we require you to support three overall categories of LEGO 
 | Block bricks        | Slope bricks         | Flat bricks|
 | -----------         | -----------          |------              |
 | ![](block_brick.png)| ![](slope_brick.png) | ![](flat_brick.png)|
+| ![](/img/bricks.png)| ![](img/slop_bricks_attempt.gif)| ![](img/flat_tiles_all.gif)|
 
 In order to correctly place each type, you will need to categorize your mesh points.
 - Slope bricks should be placed at any particle whose transferred surface normal is sufficiently dissimilar to the vector <0, 1, 0>.
