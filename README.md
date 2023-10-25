@@ -1,3 +1,7 @@
+I promise it is a fin project I just can't seem to get it to render but here is the lil dino toy anyways
+
+<img width="366" alt="Screenshot 2023-10-24 at 10 17 36 PM" src="https://github.com/inshalak/hw03-legos/assets/104465349/73fe744b-f7fb-4715-bce1-6531b501c8ce">
+
 # LEGO-ifying Meshes
 
 ## Project Overview
