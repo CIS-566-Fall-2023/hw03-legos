@@ -1,4 +1,8 @@
-Taking a late day!
+Completed capybara:
+
+<img width="860" alt="image" src="https://github.com/sherryli02/hw03-legos/assets/97941858/cfbb1153-0ccc-424f-af9f-8362abbeb9b3">
+
+Hello! Unfortunately my renders are taking longer than anticipated, and I'll update with them as soon as they're done.
 
 # LEGO-ifying Meshes
 
