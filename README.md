@@ -5,14 +5,8 @@
 ## Project Overview
 This is a Houdini project that can "LEGO-ify" 3D models! Using procedural modeling techniques and VEX, the project converts any faceted mesh into a collection of LEGO pieces.
 
-## Creating your node
-Create a custom node in the nodes window that you will enter and add nodes within; this will be your LEGO-ifying node.
-
-## Set up some test geometry
-Use one of Houdini's Test Geometry nodes to start yourself off with a faceted mesh.
-Now you have something with which to visualize the results of your nodes as you progress in your implementation.
-
-## Converting a mesh to points
+## Process
+### Converting the Mesh to Points
 - Use a VDB From Polygons node followed by a Convert VDB node to compute the closed volume of your mesh.
 - In a separate node chain, compute the bounding box of your mesh and then use a Points from Volume node to generate points in 3D space.
   - The larger the particle separation, the larger your LEGO bricks will have to be in order to fill the space (and your mesh will be composed of fewer LEGO bricks).
@@ -65,20 +59,8 @@ then a brick __should not__ be placed there (i.e. the loop should just continue 
  which can be followed by a Split node to create two "outputs" from this logic: particles in a group tagging them as
 "places to put a brick on" and "places that did not have a brick placed at them".
 
-## Exposing node parameters
-Allow a user to interact with your node as a singular tool by exposing certain parameters:
-- Adjusting the scale of the bricks that compose your model, allowing it to be made from more or fewer bricks.
-  - This should adjust the spacing of your particles as well as the scale of the LEGO brick FBXs
-- Changing the threshold at which a particle is determined to be a sloped brick instead of a block brick.
-- Adjusting the percentage of "top" particles that display as flat bricks, rather than placing no brick there at all.
-
-## Rendering
-Render at least one LEGO-ified mesh using the three-point lighting technique discussed in class, and apply a plastic-like material to your bricks.
-
-## Extra Credit
-- Rigid body simulation
-  - Simulate dropping your LEGO model and having its bricks separate from the force of the impact
-  - For even more credit, try adding vertical glue constraints to mimic the brick studs locking together
-- Add more brick types
-  - Use irregularly-shaped bricks such as a leaf to create terrain
-  - Refer to [stud.io](https://www.bricklink.com/v3/studio/download.page) for additional brick models
+## User Controls
+The project allows users to interact with the geometry by exposing certain parameters:
+- Brick Scale: adjust the scale of the bricks by altering the point separation parameter.
+- Slope Threshold: change the threshold at which a particle is determined to be a sloped brick instead of a block brick.
+- Top Brick Coverage: adjust the percentage of flat bricks covering the surface instead of exposed bricks.
