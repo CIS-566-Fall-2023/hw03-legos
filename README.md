@@ -1,4 +1,9 @@
 # LEGO-ifying Meshes
+![](render/final1.jpg)
+
+![](render/final2.jpg)
+
+![](render/trial.jpg)
 
 ## Project Overview
 In this assignment, you will make a Houdini project that can convert any faceted mesh to a collection of LEGO pieces.
