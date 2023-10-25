@@ -7,19 +7,22 @@ This is a Houdini project that can "LEGO-ify" 3D models! Using procedural modeli
 
 ## Process
 ### Converting the Mesh to Points
-- Use a VDB From Polygons node followed by a Convert VDB node to compute the closed volume of your mesh.
-- In a separate node chain, compute the bounding box of your mesh and then use a Points from Volume node to generate points in 3D space.
-  - The larger the particle separation, the larger your LEGO bricks will have to be in order to fill the space (and your mesh will be composed of fewer LEGO bricks).
-- Combine your VDB volume and 3D points using a Group Create node to find all of the points that fall within your mesh's volume.
-- Remove all of the points outside of that group with a Blast node.
-- In an Attribute Wrangle node, set the scale of your particles (`@pscale`) proportional to the particle separation (`@particlesep`) you defined in your Points from Volume node.
-- Finally, use an Attribute Transfer node to obtain color and surface normal information for each particle based on the original mesh.
-
-## Converting the points to LEGO bricks
-This project supports ==three overall categories of LEGO brick:
+- The first step is to convert the mesh into a group of uniformly distributed points, where each point will eventually be converted to a LEGO brick.
+- I create a bounding box surrounding the mesh and use a `pointsfromvolume` node to generate points in 3D space.
+- In a separate node chain, I use a `vdbfrompolygons` and `convertvdb` node to compute the closed volume of the mesh, creating a point cloud.
+- I combine the VDB volume and 3D points using a `groupcreate` node to find all points within the mesh's volume. Then, I remove all the points outside the mesh group using a `blast` node.
+- Using an `attributetransfer` node, I get the color and surface normal information for each particle based on the original mesh.
+    
+### Converting the Points to LEGO Bricks
+This project supports three overall categories of LEGO bricks:
 | Block bricks        | Slope bricks         | Flat bricks|
 | -----------         | -----------          |------              |
 | ![](block_brick.png)| ![](slope_brick.png) | ![](flat_brick.png)|
+
+- 
+### Preventing LEGO Bricks from Intersecting
+
+
 
 In order to correctly place each type, you will need to categorize your mesh points.
 - Slope bricks should be placed at any particle whose transferred surface normal is sufficiently dissimilar to the vector <0, 1, 0>.
