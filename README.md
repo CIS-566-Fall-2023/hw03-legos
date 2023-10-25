@@ -1,4 +1,5 @@
 # LEGO-ifying Meshes
+Final Render: <img width="1031" alt="image" src="https://github.com/xcupsilon/hw03-legos/assets/50472308/2970b8c1-f6eb-4661-bac7-73655b8e98a3">
 
 ## Project Overview
 In this assignment, you will make a Houdini project that can convert any faceted mesh to a collection of LEGO pieces.
