@@ -4,6 +4,11 @@
 
 ## Project Overview
 This is a Houdini project that can "LEGO-ify" 3D models! Using procedural modeling techniques and VEX, the project converts any faceted mesh into a collection of LEGO pieces.
+![](render1.png)
+
+|<img src="original.png" width="100%">|<img src="lego1.png" width="100%">|
+|:-:|:-:|
+|Original Mesh|LEGO-ified Version|
 
 ## Process
 ### Converting the Mesh to Points
@@ -31,6 +36,8 @@ The project uses a greedy approach to place blocks, starting with placing 2x2 bl
 then a brick doesn't get placed (i.e. the loop continues to the next particle)
 
 ## User Controls
+![](parameters.png)
+
 The project allows users to interact with the geometry by exposing certain parameters:
 - Brick Scale: adjust the scale of the bricks by altering the point separation parameter.
 - Slope Threshold: change the threshold at which a particle is determined to be a sloped brick instead of a block brick.
