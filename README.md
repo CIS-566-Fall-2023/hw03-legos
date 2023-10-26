@@ -27,7 +27,7 @@ The various kinds of bricks and their placement is decided in the following mann
 ## User Configurable Parameters
 A user is allowed to interact with the LEGOfier as a singular tool using certain parameters:
 ![](controls.png)
-- **Particle Separation** handles thescale of the bricks that compose the model, allowing it to be made from more or fewer bricks.
+- **Particle Separation** handles the scale of the bricks that compose the model, allowing it to be made from more or fewer bricks.
 
 
 | Particle Separation = 0.1       | Particle Separation = 0.05         | Particle Separation = 0.03|
