@@ -1,4 +1,4 @@
-# LEGO-ifying Meshes
+# LEGO-fying Meshes
 ![](render/final1.jpg)
 
 ![](render/final2.jpg)
@@ -18,10 +18,10 @@ The various kinds of bricks and their placement is decided in the following mann
 
 | Brick Type        | Placement Logic         |
 | -----------         | -----------          |
-| ![](render/bricks_top_nor.png)| We first isolate all the particles at the top of the mesh's surface. Then, we identify the particles where the surface normal is 'sufficiently different' than a certain user-provided threshold. |
+| ![](render/bricks_top_nor.png)| We first isolate all the particles at the top of the mesh's surface. Then, we identify the particles where the surface normal is 'sufficiently different' than a certain user-provided threshold. These blocks are then oriented by applying a normal-aware rotation. |
 | ![](render/bricks_top_plain.png) | Next, we look at all the remaining top points, and place 2x1x1 grill blocks wherever possible. All the particles that result in intersecting blocks are discarded. |
 | ![](render/bricks_2x1x2.png) | We then try to place 2x1x2 on all the 'non-top' particles, as well as the particles discarded in the previous step. This also uses the intersection logic similar to the previous step, and rejects all non-conforming particles. |
-| ![](render/bricks_2x1x1.png) | All the remaining positions are tried to be filelx with 2x1x1 blocks with the similar intersection logic as before. |
+| ![](render/bricks_2x1x1.png) | All the remaining positions are tried to be filled with 2x1x1 blocks with the similar intersection logic as before. |
 | ![](render/bricks_1x1x1.png) | Finally, all the remaining particles end up with 1x1x1 blocks placed on top of them. |
 
 ## User Configurable Parameters
