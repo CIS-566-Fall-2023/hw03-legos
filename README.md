@@ -1,6 +1,7 @@
 # LEGO-ifying Meshes
 
 ## Project Overview
+[Link to the google drive containing houdini file](https://drive.google.com/drive/folders/1PijzF1PlscGqwTIgYf_ycLDalLX_Kx6E?usp=sharing)
 ![](untitled1.png)
 This is a Houdini project that can convert any faceted mesh to a collection of LEGO pieces.
 
