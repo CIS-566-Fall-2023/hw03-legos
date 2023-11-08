@@ -1,8 +1,9 @@
 # LEGO-ifying Meshes
 
 ## Submission 
-Final rendered Image:
-![](lego_monster.png)
+### Final rendered Image:
+
+![](https://github.com/uluyek/hw03-legos/blob/main/HW3%20Rendered%20Image.jpg)
 
 ## Project Overview
 In this assignment, you will make a Houdini project that can convert any faceted mesh to a collection of LEGO pieces.
