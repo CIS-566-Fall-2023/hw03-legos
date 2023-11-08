@@ -6,7 +6,7 @@
 ![](https://github.com/uluyek/hw03-legos/blob/main/HW3%20Rendered%20Image.jpg)
 
 ### Rigid Body Simulation:
-![]()
+![](https://github.com/uluyek/hw03-legos/blob/main/HW3%20Rendered%20Image2.jpeg)
 ![]()
 
 
