@@ -9,6 +9,9 @@
 ![](https://github.com/uluyek/hw03-legos/blob/main/HW3%20Rendered%20Image2.jpeg)
 ![](https://github.com/uluyek/hw03-legos/blob/main/566%20hw3%20result.jpg)
 
+### Houdini Structure
+![](https://github.com/uluyek/hw03-legos/blob/main/HW3%20houdini%20Procedure.jpg)
+
 
 ## Project Overview
 In this assignment, you will make a Houdini project that can convert any faceted mesh to a collection of LEGO pieces.
