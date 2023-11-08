@@ -31,3 +31,11 @@ Slope bricks
 
 And all exposed tops have round tops
 ![image](https://github.com/kyraSclark/hw03-legos/assets/60115638/09240227-70b0-48b4-8c6a-56d7559d8af6)
+
+## Color the bricks
+Here you can see my attempt to use the attribute transfer to add color to the mesh. 
+![image](https://github.com/kyraSclark/hw03-legos/assets/60115638/523a8462-ca1a-4fe6-8840-980f61adf147)
+
+Although the texture might not be working, we can see that the pink color is transferred to the rest of the bricks. 
+![image](https://github.com/kyraSclark/hw03-legos/assets/60115638/07828844-8179-48c3-a06b-519a0fc16c46)
+
