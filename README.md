@@ -5,6 +5,11 @@
 
 ![](https://github.com/uluyek/hw03-legos/blob/main/HW3%20Rendered%20Image.jpg)
 
+### Rigid Body Simulation:
+![]()
+![]()
+
+
 ## Project Overview
 In this assignment, you will make a Houdini project that can convert any faceted mesh to a collection of LEGO pieces.
 You will continue your exploration of procedural modeling, while working with new Houdini nodes.
