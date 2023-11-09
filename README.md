@@ -39,4 +39,25 @@ Here you can see my attempt to use the attribute transfer to add color to the me
 Although the texture might not be working, we can see that the pink color is transferred to the rest of the bricks. 
 ![image](https://github.com/kyraSclark/hw03-legos/assets/60115638/18530d0d-e382-4eb2-8346-94d2b8b8c7a6)
 
+## Customizable Parameters
+My Lego-ifier has the following options available to the user: 
+
+![image](https://github.com/kyraSclark/hw03-legos/assets/60115638/a359ddca-5b55-4e86-bc9a-a9a8afe4c486)
+
+Slope controls the slope of the slope bricks. 0 Means there is no slope as you can see here: 
+![image](https://github.com/kyraSclark/hw03-legos/assets/60115638/ee95cc0d-d647-4591-a2d5-7a62304574f6)
+
+Whereas, -1 makes it a very sharply sloped brick:
+![image](https://github.com/kyraSclark/hw03-legos/assets/60115638/2cc5f2e2-7e44-4b95-974c-0234b18955ee)
+
+I recommend a value of around -.24 to get the optimal LEGO shape: 
+![image](https://github.com/kyraSclark/hw03-legos/assets/60115638/cd64c056-703b-46f6-9d15-be18396d9346)
+
+We also have the Scale value which controls the scale of all the bricks. The default is 1. But we can change the overall LEGO piece like so: 
+![image](https://github.com/kyraSclark/hw03-legos/assets/60115638/d3c8e2bf-e521-404f-8fdc-00534225804b)
+![image](https://github.com/kyraSclark/hw03-legos/assets/60115638/f3112206-f321-4471-87b6-cf467bdbb9bf)
+
+
+
+
 
