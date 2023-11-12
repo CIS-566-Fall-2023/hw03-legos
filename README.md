@@ -32,13 +32,6 @@ Slope bricks
 And all exposed tops have round tops
 ![image](https://github.com/kyraSclark/hw03-legos/assets/60115638/09240227-70b0-48b4-8c6a-56d7559d8af6)
 
-## Color the bricks
-Here you can see my attempt to use the attribute transfer to add color to the mesh. 
-![image](https://github.com/kyraSclark/hw03-legos/assets/60115638/523a8462-ca1a-4fe6-8840-980f61adf147)
-
-Although the texture might not be working, we can see that the pink color is transferred to the rest of the bricks. 
-![image](https://github.com/kyraSclark/hw03-legos/assets/60115638/18530d0d-e382-4eb2-8346-94d2b8b8c7a6)
-
 ## Customizable Parameters
 My Lego-ifier has the following options available to the user: 
 
@@ -57,7 +50,12 @@ We also have the Scale value which controls the scale of all the bricks. The def
 ![image](https://github.com/kyraSclark/hw03-legos/assets/60115638/d3c8e2bf-e521-404f-8fdc-00534225804b)
 ![image](https://github.com/kyraSclark/hw03-legos/assets/60115638/f3112206-f321-4471-87b6-cf467bdbb9bf)
 
+## Color the bricks
+Next, I got the texture file of the model and used the attribute transfer to add color to the mesh. 
+![image](https://github.com/kyraSclark/hw03-legos/assets/60115638/523a8462-ca1a-4fe6-8840-980f61adf147)
 
+Now, the color of the model is transferred to the points, and the following lego brick!
+![image](https://github.com/kyraSclark/hw03-legos/assets/60115638/20ed24b4-3b4a-4e25-8ae3-e43018b26557)
 
 
 
